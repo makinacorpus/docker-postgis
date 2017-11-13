@@ -3,8 +3,12 @@ sudo: required
 services:
   - docker
 
+before_install:
+  - ls -als
+
 install:
   - docker build -t juank/postgis:10 .
+
 
 after_success:
   - if [ "$TRAVIS_BRANCH" == "master" ]; then
