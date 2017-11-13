@@ -28,5 +28,6 @@ after_success:
     fi
 
 after_failure:
-  - psql --help
+  - psql --version
+  - ps wauxf |grep docker
   - docker logs test_postgis
