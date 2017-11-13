@@ -7,7 +7,8 @@ before_install:
   - sudo apt-get install wget ca-certificates
   - wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | sudo apt-key add -
   - sudo sh -c 'echo "deb http://apt.postgresql.org/pub/repos/apt/ $(lsb_release -cs)-pgdg main" > /etc/apt/sources.list.d/pgdg.list'
-  - sudo apt-get remove postgresql-* -y
+  - sudo apt-get remove --purge postgresql-* -y
+  - sudo apt-get autoremove -y
   - sudo apt-get update -q
   - sudo apt-get install postgresql-client-10
 
@@ -27,5 +28,5 @@ after_success:
     fi
 
 after_failure:
-  - docker ps -a
+  - psql --help
   - docker logs test_postgis
