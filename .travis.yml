@@ -9,6 +9,8 @@ before_install:
 install:
   - docker build -t juank/postgis:10 .
 
+script:
+  - ls -als
 
 after_success:
   - if [ "$TRAVIS_BRANCH" == "master" ]; then
