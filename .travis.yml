@@ -7,7 +7,7 @@ install:
   - docker build -t juank/postgis:10 .
 
 before_script:
-  - docker run -d -e POSTGRES_USER=$POSTGRES_USER -e POSTGRES_PASSWORD=$POSTGRES_PASSWORD -e POSTGRES_DB=$POSTGRES_DB -p 5433:5432 juank/postgis:10
+  - docker run --name test_postgis -d -e POSTGRES_USER=$POSTGRES_USER -e POSTGRES_PASSWORD=$POSTGRES_PASSWORD -e POSTGRES_DB=$POSTGRES_DB -p 5433:5432 juank/postgis:10
 
 script:
   - PGPASSWORD=$POSTGRES_PASSWORD psql -h 127.0.0.1 -p 5433 -U $POSTGRES_USER -d $POSTGRES_DB -c "SELECT POSTGIS_VERSION();"
@@ -17,3 +17,7 @@ after_success:
       docker login -u "$DOCKER_USERNAME" -p "$DOCKER_PASSWORD";
       docker push juank/postgis:10;
     fi
+
+after_failure:
+  - docker ps -a
+  - docker logs test_postgis
