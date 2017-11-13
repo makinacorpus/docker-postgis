@@ -17,6 +17,7 @@ install:
 
 before_script:
   - docker run --name test_postgis -d -e POSTGRES_USER=$POSTGRES_USER -e POSTGRES_PASSWORD=$POSTGRES_PASSWORD -e POSTGRES_DB=$POSTGRES_DB -p 127.0.0.1:5433:5432 juank/postgis:10
+  - sleep 15
 
 script:
   - PGPASSWORD=$POSTGRES_PASSWORD psql -h 127.0.0.1 -p 5433 -U $POSTGRES_USER -d $POSTGRES_DB -c "SELECT POSTGIS_VERSION();"
