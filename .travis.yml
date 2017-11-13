@@ -3,17 +3,17 @@ sudo: required
 services:
   - docker
 
-before_install:
-  - ls -als
-
 install:
   - docker build -t juank/postgis:10 .
 
+before_script:
+  - docker run -t juank/postgis:10 -d -p 5432:5432 -e "POSTGRES_USER=$POSTGRES_USER" -e "POSTGRES_PASSWORD=$POSTGRES_PASSWORD" -e "POSTGRES_DB=$POSTGRES_DB"
+
 script:
-  - ls -als
+  - PGPASSWORD=$POSTGRES_PASSWORD psql -h 127.0.0.1 -u $POSTGRES_USER -d $POSTGRES_DB -c "SELECT POSTGIS_VERSION();"
 
 after_success:
   - if [ "$TRAVIS_BRANCH" == "master" ]; then
-    docker login -u "$DOCKER_USERNAME" -p "$DOCKER_PASSWORD";
-    docker push juank/postgis:10;
+      docker login -u "$DOCKER_USERNAME" -p "$DOCKER_PASSWORD";
+      docker push juank/postgis:10;
     fi
