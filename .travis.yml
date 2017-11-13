@@ -4,10 +4,10 @@ services:
   - docker
 
 install:
-  - docker build -t juank/postgis:10-2.4 .
+  - docker build -t juank/postgis:latest .
 
 before_script:
-  - docker run --name test_postgis -d -e POSTGRES_USER=$POSTGRES_USER -e POSTGRES_PASSWORD=$POSTGRES_PASSWORD -e POSTGRES_DB=$POSTGRES_DB -p 127.0.0.1:5433:5432 juank/postgis:10-2.4
+  - docker run --name test_postgis -d -e POSTGRES_USER=$POSTGRES_USER -e POSTGRES_PASSWORD=$POSTGRES_PASSWORD -e POSTGRES_DB=$POSTGRES_DB -p 127.0.0.1:5433:5432 juank/postgis:latest
   - sleep 15
 
 script:
@@ -16,7 +16,7 @@ script:
 after_success:
   - if [ "$TRAVIS_BRANCH" == "master" ]; then
       docker login -u "$DOCKER_USERNAME" -p "$DOCKER_PASSWORD";
-      docker push juank/postgis:10-2.4;
+      docker push juank/postgis:latest;
     fi
 
 after_failure:
