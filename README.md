@@ -7,3 +7,4 @@
 ## Supported tags
 
 -    10-2.4, latest
+-    9.6-2.4
