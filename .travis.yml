@@ -4,7 +4,7 @@ services:
   - docker
 
 env:
-  - TAG=latest
+  - TAG=$TAVIS_BRANCH
 
 install:
   - docker build -t juank/postgis:$TAG .
