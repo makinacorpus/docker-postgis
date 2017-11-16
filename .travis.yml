@@ -3,8 +3,8 @@ sudo: required
 services:
   - docker
 
-env:
-  - TAG=$TAVIS_BRANCH
+before_install:
+  - export TAG=$TRAVIS_BRANCH
 
 install:
   - docker build -t juank/postgis:$TAG .
