@@ -35,6 +35,7 @@ RUN set -ex \
         gdal-dev \
         geos-dev \
         proj4-dev \
+        protobuf-c-dev \
     && cd /usr/src/postgis \
     && ./autogen.sh \
 # configure options taken from:
@@ -50,6 +51,7 @@ RUN set -ex \
         geos \
         gdal \
         proj4 \
+        protobuf-c \
     && cd / \
     && rm -rf /usr/src/postgis \
     && apk del .fetch-deps .build-deps .build-deps-testing
