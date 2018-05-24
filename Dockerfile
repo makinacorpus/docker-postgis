@@ -3,7 +3,6 @@ MAINTAINER J-E Castagnede <j.e.castagnede@gmail.com>
 
 ENV POSTGIS_VERSION 2.4.4
 
-
 RUN set -ex \
     \
     && apk add --no-cache --virtual .fetch-deps \
