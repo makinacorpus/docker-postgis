@@ -4,7 +4,7 @@ services:
   - docker
 
 before_install:
-  - export TAG=latest
+  - export TAG=$TRAVIS_BRANCH
 
 install:
   - docker build -t juank/postgis:$TAG .
