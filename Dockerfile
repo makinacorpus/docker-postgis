@@ -29,7 +29,10 @@ RUN set -ex \
         libxml2-dev \
         make \
         perl \
-    \
+    # add libcrypto from (edge:main) for gdal-2.3.0
+    && apk add --no-cache --virtual .crypto-rundeps \
+               --repository http://dl-cdn.alpinelinux.org/alpine/edge/main \
+        libressl2.7-libcrypto \
     && apk add --no-cache --virtual .build-deps-testing \
         --repository http://dl-cdn.alpinelinux.org/alpine/edge/testing \
         gdal-dev \
