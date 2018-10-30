@@ -1,4 +1,4 @@
-FROM postgres:10-alpine
+FROM postgres:11-alpine
 MAINTAINER J-E Castagnede <j.e.castagnede@gmail.com>
 
 ENV POSTGIS_VERSION 2.5.0
