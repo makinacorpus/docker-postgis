@@ -1,7 +1,7 @@
 FROM postgres:11-alpine
 MAINTAINER J-E Castagnede <j.e.castagnede@gmail.com>
 
-ENV POSTGIS_VERSION 2.5.0
+ENV POSTGIS_VERSION 2.5.1
 
 
 RUN set -ex \
