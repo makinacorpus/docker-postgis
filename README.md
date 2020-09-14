@@ -1,3 +1,5 @@
+# DEPRECATED : use postgis/postgis based images 
+
 # Docker image makinacorpus/postgis 
 
 * Based on postgres alpine docker images
